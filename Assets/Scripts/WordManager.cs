@@ -7,6 +7,7 @@ public class WordManager : MonoBehaviour
 {
     public static WordManager instance;
     private string[] lines;
+    private List<string> generated_words;
     private void Awake()
     {
         if (instance == null)
@@ -59,4 +60,16 @@ public class WordManager : MonoBehaviour
         return tmpWord;
     }
 
+    public void WordGenerate(int length, int quant)
+    {
+        for(int i = 0; i < quant; i++)
+        {
+            string newWord= GetRandomWord(length);
+            generated_words.Add(newWord);
+        }
+    }
+    public List<string> GetGeneratedWords()
+    {
+        return generated_words;
+    }
 }
