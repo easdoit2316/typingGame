@@ -5,6 +5,8 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
+
+    [SerializeField] private AudioSource bgMusic;
     private void Awake()
     {
         if (instance == null)
@@ -15,5 +17,10 @@ public class SoundManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        bgMusic.Play();
     }
 }
