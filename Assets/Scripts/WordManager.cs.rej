@@ -1,0 +1,24 @@
+diff a/Assets/Scripts/WordManager.cs b/Assets/Scripts/WordManager.cs	(rejected hunks)
+@@ -41,4 +41,22 @@
+         }
+     }
+ 
++    private void Update()
++    {
++        
++    }
++
++    private string GetRandomWord(int minSize)
++    {
++        string tmpWord;
++        tmpWord = lines[Random.Range(0,lines.Length)];
++
++        while(tmpWord.Length > minSize)
++        {
++            tmpWord = lines[Random.Range(0, lines.Length)];
++        }
++
++        return tmpWord;
++    }
++
+ }
