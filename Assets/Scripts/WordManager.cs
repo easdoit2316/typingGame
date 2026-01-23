@@ -6,7 +6,7 @@ using System.IO;
 public class WordManager : MonoBehaviour
 {
     public static WordManager instance;
-
+    private string[] lines;
     private void Awake()
     {
         if (instance == null)
@@ -29,7 +29,7 @@ public class WordManager : MonoBehaviour
             string fileContents = textFile;
             Debug.Log("File contents : " + fileContents);
 
-            string[] lines = fileContents.Split(", ");
+            lines = fileContents.Split(", ");
             foreach(string line in lines)
             {
                 Debug.Log("Line : " + line);
@@ -39,6 +39,24 @@ public class WordManager : MonoBehaviour
         {
             Debug.LogError("Text file asset not assigned");
         }
+    }
+
+    private void Update()
+    {
+        
+    }
+
+    private string GetRandomWord(int minSize)
+    {
+        string tmpWord;
+        tmpWord = lines[Random.Range(0,lines.Length)];
+
+        while(tmpWord.Length > minSize)
+        {
+            tmpWord = lines[Random.Range(0, lines.Length)];
+        }
+
+        return tmpWord;
     }
 
 }
