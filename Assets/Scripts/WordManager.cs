@@ -37,11 +37,6 @@ public class WordManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        
-    }
-
     private string GetRandomWord(int minSize)
     {
         string tmpWord;

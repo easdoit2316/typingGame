@@ -10,10 +10,15 @@ public class GameManager : MonoBehaviour
     private int lifePoint;
 
     public float spawntime;
+    private float spawntimer;
     public List<Transform> spawners;
+    public int spawnAmount;
+    public int spawnLeangth;
 
     private void Awake()
     {
+        spawntimer = spawntime;
+
         if (instance == null)
         {
             instance = this;
@@ -30,6 +35,16 @@ public class GameManager : MonoBehaviour
     {
         gameSpeed = 1f;
         lifePoint = 3;
+    }
+
+    private void Update()
+    {
+        spawntimer -= Time.deltaTime;
+        if(spawntimer <= 0)
+        {
+            spawntimer = spawntime;
+            WordManager.instance.WordGenerate(spawnLeangth, spawnAmount);
+        }
     }
 
     private void DecreaseLife()
