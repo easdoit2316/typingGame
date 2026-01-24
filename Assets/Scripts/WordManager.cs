@@ -28,13 +28,8 @@ public class WordManager : MonoBehaviour
         if(textFile != null)
         {
             string fileContents = textFile;
-            Debug.Log("File contents : " + fileContents);
 
             lines = fileContents.Split(", ");
-            foreach(string line in lines)
-            {
-                Debug.Log("Line : " + line);
-            }
         }
         else
         {

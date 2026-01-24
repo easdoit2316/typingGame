@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     private float gameSpeed;
     private int lifePoint;
 
+    public float spawntime;
+    public List<Transform> spawners;
+
     private void Awake()
     {
         if (instance == null)
@@ -19,6 +22,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        spawntime = 8f;
     }
 
     private void Start()
