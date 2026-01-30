@@ -12,11 +12,13 @@ public class GameManager : MonoBehaviour
     public float spawntime;
     private float spawntimer;
     public List<Transform> spawners;
-    public int spawnAmount;
-    public int spawnLeangth;
+    private int spawnAmount;
+    private int spawnLeangth;
+    private int lengthCount = 0;
 
     private void Awake()
     {
+        spawntime = 8f;
         spawntimer = spawntime;
 
         if (instance == null)
@@ -28,13 +30,15 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        spawntime = 8f;
     }
 
     private void Start()
     {
         gameSpeed = 1f;
         lifePoint = 3;
+        spawntimer = spawntime;
+        spawnAmount = 1;
+        spawnLeangth = 4;
     }
 
     private void Update()
@@ -44,7 +48,13 @@ public class GameManager : MonoBehaviour
         {
             spawntimer = spawntime;
             WordManager.instance.WordGenerate(spawnLeangth, spawnAmount);
+            lengthCount++;
+            spawnLeangth = 4 + lengthCount / 15;
+            spawntime = 8 - lengthCount / 10;
         }
+
+        if (spawntime <= 0)
+            spawntime = 0.7f;   
     }
 
     private void DecreaseLife()

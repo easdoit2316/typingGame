@@ -7,12 +7,13 @@ public class WordManager : MonoBehaviour
 {
     public static WordManager instance;
     private string[] lines;
-    private List<string> generated_words;
+    public List<string> generated_words;
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
+            generated_words = new List<string>();
         }
         else
         {
