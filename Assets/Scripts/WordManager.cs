@@ -2,18 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using Unity.VisualScripting;
 
 public class WordManager : MonoBehaviour
 {
     public static WordManager instance;
     private string[] lines;
-    public List<string> generated_words;
+    public List<WordObject> generated_words = new List<WordObject>();
+    public GameObject wordObjectPrefab;
+    [SerializeField] private GameObject _destination;
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            generated_words = new List<string>();
         }
         else
         {
@@ -55,11 +57,14 @@ public class WordManager : MonoBehaviour
     {
         for(int i = 0; i < quant; i++)
         {
-            string newWord= GetRandomWord(length);
-            generated_words.Add(newWord);
+            string newWord = GetRandomWord(length);
+            WordObject n_Word = Instantiate(wordObjectPrefab.GetComponent<WordObject>(), parent: GameManager.instance.spawners[Random.Range(0,22)]);
+            n_Word.SetWord(newWord);
+            n_Word.SetDestination(_destination.transform.position);
+            generated_words.Add(n_Word);
         }
     }
-    public List<string> GetGeneratedWords()
+    public List<WordObject> GetGeneratedWords()
     {
         return generated_words;
     }

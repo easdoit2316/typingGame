@@ -18,9 +18,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        spawntime = 8f;
-        spawntimer = spawntime;
-
+        
         if (instance == null)
         {
             instance = this;
@@ -34,9 +32,11 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        spawntime = 3f;
+        spawntimer = spawntime;
+
         gameSpeed = 1f;
         lifePoint = 3;
-        spawntimer = spawntime;
         spawnAmount = 1;
         spawnLeangth = 4;
     }
@@ -49,8 +49,8 @@ public class GameManager : MonoBehaviour
             spawntimer = spawntime;
             WordManager.instance.WordGenerate(spawnLeangth, spawnAmount);
             lengthCount++;
-            spawnLeangth = 4 + lengthCount / 15;
-            spawntime = 8 - lengthCount / 10;
+            spawnLeangth +=lengthCount / 15;
+            spawntime -= lengthCount / 10;
         }
 
         if (spawntime <= 0)
