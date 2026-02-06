@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     private int spawnLeangth;
     private int lengthCount = 0;
 
+    public List<GameObject> healthAnims;
     private void Awake()
     {
         
@@ -32,11 +33,11 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        spawntime = 3f;
+        spawntime = 4f;
         spawntimer = spawntime;
 
-        gameSpeed = 1f;
-        lifePoint = 3;
+        gameSpeed = 7f;
+        lifePoint = 4;
         spawnAmount = 1;
         spawnLeangth = 4;
     }
@@ -57,8 +58,9 @@ public class GameManager : MonoBehaviour
             spawntime = 0.7f;   
     }
 
-    private void DecreaseLife()
+    public void DecreaseLife()
     {
+        healthAnims[4 - GetLifePoint()].SetActive(false);
         lifePoint--;
         if (lifePoint < 0)
         {

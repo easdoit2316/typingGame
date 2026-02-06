@@ -71,6 +71,7 @@ public class WordManager : MonoBehaviour
             n_Word.SetWord(newWord);
             n_Word.SetDestination(_destination.transform.position);
             myDisplay.setWord(n_Word);
+            n_Word.SetTextUI(myDisplay.gameObject);
             generated_words.Add(n_Word);
         }
     }
