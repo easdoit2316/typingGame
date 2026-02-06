@@ -427,7 +427,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.85340583, g: 0.8537736, b: 0.82961017, a: 0}
+  m_BackGroundColor: {r: 1, g: 0.9976742, b: 0.9764151, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -513,6 +513,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1540704291}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &642345210
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 642345211}
+  m_Layer: 0
+  m_Name: Goal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &642345211
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642345210}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &655591256
 GameObject:
@@ -875,7 +906,6 @@ GameObject:
   - component: {fileID: 1329381196}
   - component: {fileID: 1329381195}
   - component: {fileID: 1329381197}
-  - component: {fileID: 1329381198}
   m_Layer: 0
   m_Name: WordManager
   m_TagString: Untagged
@@ -896,6 +926,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generated_words: []
+  wordObjectPrefab: {fileID: 3484757653491682171, guid: 47ae7f0e412deed4aa88c3e4360e8047, type: 3}
+  _destination: {fileID: 642345210}
+  wordDisplayPrefab: {fileID: 820532538270909384, guid: 6f3d8e2d091216749aae44895aa2139e, type: 3}
+  canvas: {fileID: 1264770833}
 --- !u!4 &1329381196
 Transform:
   m_ObjectHideFlags: 0
@@ -947,21 +981,6 @@ MonoBehaviour:
   - {fileID: 1241245523}
   - {fileID: 1140190638}
   - {fileID: 1428171808}
---- !u!114 &1329381198
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1329381194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d7fa60a69e46af43872742624905cd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvas: {fileID: 1264770834}
-  wordObj: {fileID: 6514228421785553516, guid: a87f24cda6ec7af48b76967d7a163f6a, type: 3}
-  text: {fileID: 2601120699016457689, guid: a87f24cda6ec7af48b76967d7a163f6a, type: 3}
 --- !u!1 &1383311894
 GameObject:
   m_ObjectHideFlags: 0
@@ -1587,3 +1606,4 @@ SceneRoots:
   - {fileID: 1461381656}
   - {fileID: 1329381196}
   - {fileID: 1540704291}
+  - {fileID: 642345211}

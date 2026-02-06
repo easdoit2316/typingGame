@@ -11,6 +11,10 @@ public class WordManager : MonoBehaviour
     public List<WordObject> generated_words = new List<WordObject>();
     public GameObject wordObjectPrefab;
     [SerializeField] private GameObject _destination;
+
+    [SerializeField] private WordDisplay wordDisplayPrefab;
+    [SerializeField] private Canvas canvas;
+    private List< WordDisplay> myDisplays = new List<WordDisplay>();
     private void Awake()
     {
         if (instance == null)
@@ -38,6 +42,9 @@ public class WordManager : MonoBehaviour
         {
             Debug.LogError("Text file asset not assigned");
         }
+
+        if (canvas == null)
+            canvas = FindObjectOfType<Canvas>();
     }
 
     private string GetRandomWord(int minSize)
@@ -59,8 +66,11 @@ public class WordManager : MonoBehaviour
         {
             string newWord = GetRandomWord(length);
             WordObject n_Word = Instantiate(wordObjectPrefab.GetComponent<WordObject>(), parent: GameManager.instance.spawners[Random.Range(0,22)]);
+            WordDisplay myDisplay = Instantiate(wordDisplayPrefab, canvas.transform);
+            myDisplays.Add(myDisplay);
             n_Word.SetWord(newWord);
             n_Word.SetDestination(_destination.transform.position);
+            myDisplay.setWord(n_Word);
             generated_words.Add(n_Word);
         }
     }
