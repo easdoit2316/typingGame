@@ -1,6 +1,8 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -49,13 +51,14 @@ public class GameManager : MonoBehaviour
         {
             spawntimer = spawntime;
             WordManager.instance.WordGenerate(spawnLeangth, spawnAmount);
-            lengthCount++;
-            spawnLeangth +=lengthCount / 15;
-            spawntime -= lengthCount / 10;
+            spawnLeangth = 4 + lengthCount / 10;
+            spawntime = 8 - lengthCount / 20;
+            spawnAmount = 2 + lengthCount / 25;
+            lengthCount += spawnAmount;
         }
 
-        if (spawntime <= 0)
-            spawntime = 0.7f;   
+        if (spawntime <= 1)
+            spawntime = 1f;   
     }
 
     public void DecreaseLife()
@@ -65,6 +68,15 @@ public class GameManager : MonoBehaviour
         if (lifePoint < 0)
         {
             lifePoint = 0;
+        }
+
+        if(lifePoint == 0)
+        {
+            if (lifePoint == 0)
+            {
+                Time.timeScale = 0.4f;
+                FadeController.instance.FadeToScene("Death");
+            }
         }
     }
 

@@ -5,40 +5,33 @@ public class InputFieldKeyCheck : MonoBehaviour
 {
     public TMP_InputField inputField;
 
-    void Update()
+    void Start()
     {
-        if (!inputField.isFocused) return;
+        inputField.onSubmit.AddListener(OnSubmit);
+        // If onSubmit doesn't fire on your TMP version:
+        // inputField.onEndEdit.AddListener(OnSubmit);
+    }
 
-        if (Input.GetKeyDown(KeyCode.Return))
+    void OnSubmit(string typedText)
+    {
+        typedText = typedText.Trim();
+        if (typedText.Length == 0) return;
+
+        // Check words
+        for (int i = WordManager.instance.generated_words.Count - 1; i >= 0; i--)
         {
-            string typedWord = inputField.text.Trim();
-            bool matched = false;
+            WordObject word = WordManager.instance.generated_words[i];
+            if (!word) continue;
 
-            foreach (string word in WordManager.instance.words)
+            if (string.Equals(word.word, typedText, System.StringComparison.OrdinalIgnoreCase))
             {
-                if (string.Equals(word, typedWord, System.StringComparison.OrdinalIgnoreCase))
-                {
-                    Debug.Log("Matched: " + word);
-                    matched = true;
-                    break;
-                }
+                Debug.Log("Matched: " + word.word);
+                word.MatchedWord();
+                break;
             }
-
-            for (int i = WordManager.instance.generated_words.Count - 1; i >= 0; i--)
-            {
-                WordObject word = WordManager.instance.generated_words[i];
-
-                if (!word) continue;
-
-                if (word.word == typedWord )
-                {
-                    word.MatchedWord();
-                    break;
-                }
-            }
-
-            inputField.text = "";
-            inputField.ActivateInputField();
         }
+
+        inputField.text = "";
+        inputField.ActivateInputField();
     }
 }
