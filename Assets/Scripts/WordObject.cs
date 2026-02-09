@@ -6,7 +6,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class WordObject : MonoBehaviour
 {
-    [SerializeField] private string word;
+    [SerializeField] public string word;
     [SerializeField] private Vector2 _destination;
     [SerializeField] private GameObject _textUI;
     public void SetWord(string _word)
@@ -27,10 +27,18 @@ public class WordObject : MonoBehaviour
         if(transform.position.x == _destination.x && transform.position.y == _destination.y)
         {
             GameManager.instance.DecreaseLife();
-            Destroy(_textUI.gameObject);
-            Destroy(this.gameObject);
+            MatchedWord();
         }
     }
+
+    public void MatchedWord()
+    {
+        Destroy(_textUI.gameObject);
+        Destroy(this.gameObject);
+        WordManager.instance.words.Remove(word);
+        WordManager.instance.generated_words.Remove(this);
+    }
+
     public void SetDestination(Vector3 _des)
     {
         _destination = (Vector2)_des;

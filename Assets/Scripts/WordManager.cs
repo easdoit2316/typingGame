@@ -9,6 +9,7 @@ public class WordManager : MonoBehaviour
     public static WordManager instance;
     private string[] lines;
     public List<WordObject> generated_words = new List<WordObject>();
+    public List<string> words = new List<string>();
     public GameObject wordObjectPrefab;
     [SerializeField] private GameObject _destination;
 
@@ -62,17 +63,38 @@ public class WordManager : MonoBehaviour
 
     public void WordGenerate(int length, int quant)
     {
-        for(int i = 0; i < quant; i++)
+        // Make a temporary shuffled copy
+        List<Transform> availableSpawners = new List<Transform>(GameManager.instance.spawners);
+
+        for (int i = 0; i < availableSpawners.Count; i++)
+        {
+            int rand = Random.Range(i, availableSpawners.Count);
+            (availableSpawners[i], availableSpawners[rand]) =
+                (availableSpawners[rand], availableSpawners[i]);
+        }
+
+        // Spawn using unique spawners
+        for (int i = 0; i < quant; i++)
         {
             string newWord = GetRandomWord(length);
-            WordObject n_Word = Instantiate(wordObjectPrefab.GetComponent<WordObject>(), parent: GameManager.instance.spawners[Random.Range(0,22)]);
+
+            Transform spawnPoint = availableSpawners[i];
+
+            WordObject n_Word = Instantiate(
+                wordObjectPrefab.GetComponent<WordObject>(),
+                spawnPoint
+            );
+
             WordDisplay myDisplay = Instantiate(wordDisplayPrefab, canvas.transform);
             myDisplays.Add(myDisplay);
+
             n_Word.SetWord(newWord);
             n_Word.SetDestination(_destination.transform.position);
             myDisplay.setWord(n_Word);
             n_Word.SetTextUI(myDisplay.gameObject);
+
             generated_words.Add(n_Word);
+            words.Add(n_Word.word);
         }
     }
     public List<WordObject> GetGeneratedWords()

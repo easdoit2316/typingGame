@@ -33,12 +33,12 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        spawntime = 4f;
+        spawntime = 8f;
         spawntimer = spawntime;
 
-        gameSpeed = 7f;
+        gameSpeed = 2.5f;
         lifePoint = 4;
-        spawnAmount = 1;
+        spawnAmount = 2;
         spawnLeangth = 4;
     }
 
