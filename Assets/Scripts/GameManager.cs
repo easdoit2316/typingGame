@@ -51,9 +51,9 @@ public class GameManager : MonoBehaviour
         {
             spawntimer = spawntime;
             WordManager.instance.WordGenerate(spawnLeangth, spawnAmount);
-            spawnLeangth = 4 + lengthCount / 10;
-            spawntime = 8 - lengthCount / 20;
-            spawnAmount = 2 + lengthCount / 25;
+            spawnLeangth = 4 + lengthCount / 15;
+            spawntime = 8 - lengthCount / 25;
+            spawnAmount = 2 + lengthCount / 30;
             lengthCount += spawnAmount;
         }
 
