@@ -22,5 +22,18 @@ public class WordDisplay : MonoBehaviour
     {
         text.text = word.GetWord();
         target = word.transform;
+
+        if(word.IsHealWord())
+        {
+            text.color = Color.green;
+        }
+        else if(word.IsDoubleWord())
+        {
+            text.color = Color.red;
+        }
+        else
+        {
+            text.color = Color.black;
+        }
     }
 }

@@ -16,6 +16,9 @@ public class WordManager : MonoBehaviour
     [SerializeField] private WordDisplay wordDisplayPrefab;
     [SerializeField] private Canvas canvas;
     private List< WordDisplay> myDisplays = new List<WordDisplay>();
+
+    [SerializeField] private float healChance = 0.05f;
+    [SerializeField] private float doubleChance = 0.05f;
     private void Awake()
     {
         if (instance == null)
@@ -76,7 +79,19 @@ public class WordManager : MonoBehaviour
         // Spawn using unique spawners
         for (int i = 0; i < quant; i++)
         {
-            string newWord = GetRandomWord(length);
+            bool spawnHeal = Random.value < healChance;
+            
+            bool spawnDouble = Random.value < doubleChance;
+
+            int finalLength = length;
+
+            if (spawnHeal)
+            {
+                finalLength += Random.Range(3, 5); // +3 or +4 letters
+                spawnDouble = false;
+            }
+
+            string newWord = GetRandomWord(finalLength);
 
             Transform spawnPoint = availableSpawners[i];
 
@@ -89,6 +104,14 @@ public class WordManager : MonoBehaviour
             myDisplays.Add(myDisplay);
 
             n_Word.SetWord(newWord);
+            if(spawnHeal)
+            {
+                n_Word.SetHeal(true);
+            }
+            if(spawnDouble)
+            {
+                n_Word.SetDouble(true);
+            }
             n_Word.SetDestination(_destination.transform.position);
             myDisplay.setWord(n_Word);
             n_Word.SetTextUI(myDisplay.gameObject);

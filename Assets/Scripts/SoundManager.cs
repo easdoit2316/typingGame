@@ -34,7 +34,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlayPowerUp()
     {
-        SFX.PlayOneShot(Hurtclip);
+        SFX.PlayOneShot(Powerupclip);
     }
 
     public void PlayDeath()
