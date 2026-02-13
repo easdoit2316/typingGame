@@ -41,11 +41,11 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        spawntime = 8f * difficulty;
+        spawntime = 8f / difficulty;
         spawntimer = spawntime;
 
         gameSpeed = 2.5f * difficulty;
-        lifePoint = 4 * difficulty;
+        lifePoint = 4;
         spawnAmount = 2 * difficulty;
         spawnLeangth = 4 * difficulty;
     }
