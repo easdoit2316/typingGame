@@ -1985,6 +1985,7 @@ MonoBehaviour:
   - {fileID: 1140190638}
   - {fileID: 1428171808}
   scoreText: {fileID: 489756899}
+  difficulty: 1
   healthAnims:
   - {fileID: 756993174}
   - {fileID: 763718572}
@@ -2273,7 +2274,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 90233c6e3069b40448cbe48a2863615a, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.12
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0

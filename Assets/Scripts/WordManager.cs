@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using Unity.VisualScripting;
+using System;
 
 public class WordManager : MonoBehaviour
 {
@@ -19,6 +20,10 @@ public class WordManager : MonoBehaviour
 
     [SerializeField] private float healChance = 0.05f;
     [SerializeField] private float doubleChance = 0.05f;
+
+    public static Action<string> OnWordTyped;
+    public static Action<int> OnWordDestroyed;
+    public static Action OnPlayerHit;
     private void Awake()
     {
         if (instance == null)
@@ -54,11 +59,11 @@ public class WordManager : MonoBehaviour
     private string GetRandomWord(int minSize)
     {
         string tmpWord;
-        tmpWord = lines[Random.Range(0,lines.Length)];
+        tmpWord = lines[UnityEngine.Random.Range(0,lines.Length)];
 
         while(tmpWord.Length > minSize)
         {
-            tmpWord = lines[Random.Range(0, lines.Length)];
+            tmpWord = lines[UnityEngine.Random.Range(0, lines.Length)];
         }
 
         return tmpWord;
@@ -71,7 +76,7 @@ public class WordManager : MonoBehaviour
 
         for (int i = 0; i < availableSpawners.Count; i++)
         {
-            int rand = Random.Range(i, availableSpawners.Count);
+            int rand = UnityEngine.Random.Range(i, availableSpawners.Count);
             (availableSpawners[i], availableSpawners[rand]) =
                 (availableSpawners[rand], availableSpawners[i]);
         }
@@ -79,15 +84,15 @@ public class WordManager : MonoBehaviour
         // Spawn using unique spawners
         for (int i = 0; i < quant; i++)
         {
-            bool spawnHeal = Random.value < healChance;
+            bool spawnHeal = UnityEngine.Random.value < healChance;
             
-            bool spawnDouble = Random.value < doubleChance;
+            bool spawnDouble = UnityEngine.Random.value < doubleChance;
 
             int finalLength = length;
 
             if (spawnHeal)
             {
-                finalLength += Random.Range(3, 5); // +3 or +4 letters
+                finalLength += UnityEngine.Random.Range(3, 5); // +3 or +4 letters
                 spawnDouble = false;
             }
 

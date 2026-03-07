@@ -115,6 +115,14 @@ public class GameManager : MonoBehaviour
 
     public void IncreasePoint(int val)
     {
-        score += val;
+        //int finalScore = Mathf.RoundToInt(val * UpgradeManager.Instance.scoreMultiplier);
+
+        int finalScore = val;
+
+        score += finalScore;
+
+        //UpgradeManager.Instance.lettersTyped += val;
+
+        //UpgradeManager.Instance.CheckForUpgrade(score);
     }
 }
