@@ -71,17 +71,6 @@ public class WordManager : MonoBehaviour
 
     public void WordGenerate(int length, int quant)
     {
-        // Make a temporary shuffled copy
-        List<Transform> availableSpawners = new List<Transform>(GameManager.instance.spawners);
-
-        for (int i = 0; i < availableSpawners.Count; i++)
-        {
-            int rand = UnityEngine.Random.Range(i, availableSpawners.Count);
-            (availableSpawners[i], availableSpawners[rand]) =
-                (availableSpawners[rand], availableSpawners[i]);
-        }
-
-        // Spawn using unique spawners
         for (int i = 0; i < quant; i++)
         {
             bool spawnHeal = UnityEngine.Random.value < healChance;
@@ -98,11 +87,12 @@ public class WordManager : MonoBehaviour
 
             string newWord = GetRandomWord(finalLength);
 
-            Transform spawnPoint = availableSpawners[i];
+            Vector3 spawnPos = GetRandomSpawnPosition();
 
             WordObject n_Word = Instantiate(
                 wordObjectPrefab.GetComponent<WordObject>(),
-                spawnPoint
+                spawnPos,
+                Quaternion.identity
             );
 
             WordDisplay myDisplay = Instantiate(wordDisplayPrefab, canvas.transform);
@@ -128,5 +118,33 @@ public class WordManager : MonoBehaviour
     public List<WordObject> GetGeneratedWords()
     {
         return generated_words;
+    }
+
+    Vector3 GetRandomSpawnPosition()
+    {
+        int side = UnityEngine.Random.Range(0, 4);
+        Vector3 pos;
+
+        switch (side)
+        {
+            case 0: // Left
+                pos = Camera.main.ViewportToWorldPoint(new Vector3(-0.1f, UnityEngine.Random.value, 0));
+                break;
+
+            case 1: // Right
+                pos = Camera.main.ViewportToWorldPoint(new Vector3(1.1f, UnityEngine.Random.value, 0));
+                break;
+
+            case 2: // Top
+                pos = Camera.main.ViewportToWorldPoint(new Vector3(UnityEngine.Random.value, 1.1f, 0));
+                break;
+
+            default: // Bottom
+                pos = Camera.main.ViewportToWorldPoint(new Vector3(UnityEngine.Random.value, -0.1f, 0));
+                break;
+        }
+
+        pos.z = 0;
+        return pos;
     }
 }

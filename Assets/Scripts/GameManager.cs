@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour
 
     public float spawntime;
     private float spawntimer;
-    public List<Transform> spawners;
     private int spawnAmount;
     private int spawnLeangth;
     private int lengthCount = 0;
