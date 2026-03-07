@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     private int score = 0;
     public TMP_Text scoreText;
 
-    public int difficulty;
+    public int difficulty; 
 
     public List<GameObject> healthAnims;
     private void Awake()

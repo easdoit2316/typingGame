@@ -46,7 +46,7 @@ public class WordObject : MonoBehaviour
     }
     private void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, _destination, 0.001f * GameManager.instance.GetGameSpeed());
+        transform.position = Vector2.MoveTowards(transform.position, _destination, 0.1f * GameManager.instance.GetGameSpeed() * Time.deltaTime);
 
         if(transform.position.x == _destination.x && transform.position.y == _destination.y)
         {
