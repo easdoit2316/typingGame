@@ -14,4 +14,14 @@ public class Lobby : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+
+    public void MoveToLobby()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }

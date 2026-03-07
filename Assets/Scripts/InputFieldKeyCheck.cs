@@ -8,8 +8,6 @@ public class InputFieldKeyCheck : MonoBehaviour
     void Start()
     {
         inputField.onSubmit.AddListener(OnSubmit);
-        // If onSubmit doesn't fire on your TMP version:
-        // inputField.onEndEdit.AddListener(OnSubmit);
     }
 
     void OnSubmit(string typedText)
@@ -25,6 +23,7 @@ public class InputFieldKeyCheck : MonoBehaviour
 
             if (string.Equals(word.word, typedText, System.StringComparison.OrdinalIgnoreCase))
             {
+                SoundManager.instance.PlayDestroy();
                 Debug.Log("Matched: " + word.word);
                 word.MatchedWord();
                 break;

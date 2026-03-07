@@ -26,6 +26,13 @@ public class SoundManager : MonoBehaviour
     public AudioClip Hurtclip;
     public AudioClip Powerupclip;
     public AudioClip Deathclip;
+    public AudioClip destroyClip;
+
+    public void Update()
+    {
+        bgMusic.volume = VolumeManager.Instance.music;
+        SFX.volume = VolumeManager.Instance.sfx;
+    }
 
     public void PlayHurt()
     {
@@ -40,5 +47,10 @@ public class SoundManager : MonoBehaviour
     public void PlayDeath()
     {
         SFX.PlayOneShot(Deathclip);
+    }
+
+    public void PlayDestroy()
+    {
+        SFX.PlayOneShot(destroyClip);
     }
 }

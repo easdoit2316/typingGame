@@ -70,6 +70,8 @@ public class GameManager : MonoBehaviour
 
         if(spawnAmount >= 22)
             spawnAmount = 22;
+
+        AudioListener.volume = VolumeManager.Instance.volume * 2;
     }
 
     public void DecreaseLife()

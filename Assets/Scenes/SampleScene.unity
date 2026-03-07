@@ -693,6 +693,7 @@ MonoBehaviour:
   Hurtclip: {fileID: 8300000, guid: 3451e23e2acdf0745805d11d03bd5305, type: 3}
   Powerupclip: {fileID: 8300000, guid: d91438409a8516e47b0162bd50abbfaf, type: 3}
   Deathclip: {fileID: 8300000, guid: 73f6f9f60e6bd494181be425481412d1, type: 3}
+  destroyClip: {fileID: 8300000, guid: 258d93b74024ef24a8de2aa2f8104c36, type: 3}
 --- !u!4 &493709260
 Transform:
   m_ObjectHideFlags: 0
@@ -702,7 +703,7 @@ Transform:
   m_GameObject: {fileID: 493709258}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.2247167, y: 3.813185, z: 4.7608557}
+  m_LocalPosition: {x: -5.53, y: 3.07, z: 4.7608557}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1932,7 +1933,7 @@ MonoBehaviour:
   wordDisplayPrefab: {fileID: 820532538270909384, guid: 6f3d8e2d091216749aae44895aa2139e, type: 3}
   canvas: {fileID: 1264770833}
   healChance: 0.15
-  doubleChance: 0.05
+  doubleChance: 0.15
 --- !u!4 &1329381196
 Transform:
   m_ObjectHideFlags: 0
@@ -2367,7 +2368,7 @@ Transform:
   m_GameObject: {fileID: 1514114222}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 5.02, y: -2.74, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3112,7 +3113,7 @@ Transform:
   m_GameObject: {fileID: 2064925902}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 4.61, y: -2.72, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
