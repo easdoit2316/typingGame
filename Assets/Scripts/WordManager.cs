@@ -39,7 +39,7 @@ public class WordManager : MonoBehaviour
     private void Start()
     {
 
-        string filePath = "Assets/Scripts/Words.txt";
+        string filePath = "TextData/Words.txt";
         string textFile = File.ReadAllText(filePath);
         if(textFile != null)
         {
@@ -73,9 +73,9 @@ public class WordManager : MonoBehaviour
     {
         for (int i = 0; i < quant; i++)
         {
-            bool spawnHeal = UnityEngine.Random.value < healChance;
-            
-            bool spawnDouble = UnityEngine.Random.value < doubleChance;
+            bool spawnHeal = UnityEngine.Random.Range(0f, 1f) < healChance;
+
+            bool spawnDouble = UnityEngine.Random.Range(0f, 1f) < doubleChance;
 
             int finalLength = length;
 
@@ -86,7 +86,6 @@ public class WordManager : MonoBehaviour
             }
 
             string newWord = GetRandomWord(finalLength);
-
             Vector3 spawnPos = GetRandomSpawnPosition();
 
             WordObject n_Word = Instantiate(
@@ -94,16 +93,16 @@ public class WordManager : MonoBehaviour
                 spawnPos,
                 Quaternion.identity
             );
-
             WordDisplay myDisplay = Instantiate(wordDisplayPrefab, canvas.transform);
+
             myDisplays.Add(myDisplay);
 
             n_Word.SetWord(newWord);
-            if(spawnHeal)
+            if (spawnHeal)
             {
                 n_Word.SetHeal(true);
             }
-            if(spawnDouble)
+            if (spawnDouble)
             {
                 n_Word.SetDouble(true);
             }
@@ -123,24 +122,26 @@ public class WordManager : MonoBehaviour
     Vector3 GetRandomSpawnPosition()
     {
         int side = UnityEngine.Random.Range(0, 4);
+        float zDistance = Mathf.Abs(Camera.main.transform.position.z);
+
         Vector3 pos;
 
         switch (side)
         {
             case 0: // Left
-                pos = Camera.main.ViewportToWorldPoint(new Vector3(-0.1f, UnityEngine.Random.value, 0));
+                pos = Camera.main.ViewportToWorldPoint(new Vector3(-0.1f, UnityEngine.Random.value, zDistance));
                 break;
 
             case 1: // Right
-                pos = Camera.main.ViewportToWorldPoint(new Vector3(1.1f, UnityEngine.Random.value, 0));
+                pos = Camera.main.ViewportToWorldPoint(new Vector3(1.1f, UnityEngine.Random.value, zDistance));
                 break;
 
             case 2: // Top
-                pos = Camera.main.ViewportToWorldPoint(new Vector3(UnityEngine.Random.value, 1.1f, 0));
+                pos = Camera.main.ViewportToWorldPoint(new Vector3(UnityEngine.Random.value, 1.1f, zDistance));
                 break;
 
             default: // Bottom
-                pos = Camera.main.ViewportToWorldPoint(new Vector3(UnityEngine.Random.value, -0.1f, 0));
+                pos = Camera.main.ViewportToWorldPoint(new Vector3(UnityEngine.Random.value, -0.1f, zDistance));
                 break;
         }
 

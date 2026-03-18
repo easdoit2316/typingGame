@@ -16,9 +16,8 @@ public class GameManager : MonoBehaviour
     private float spawntimer;
     private int spawnAmount;
     private int spawnLeangth;
-    private int lengthCount = 0;
 
-    private int score = 0;
+    public int score = 0;
     public TMP_Text scoreText;
 
     public int difficulty; 
@@ -53,22 +52,27 @@ public class GameManager : MonoBehaviour
     {
         scoreText.text = score.ToString();
 
-        spawntimer -= Time.deltaTime;
-        if(spawntimer <= 0)
+        // Difficulty progression
+        float progress = Mathf.FloorToInt(GameTimer.instance.timeElapsed % 60f);
+        
+        spawnLeangth = 4 * difficulty + (Mathf.RoundToInt(progress) / 20) * difficulty;
+        spawnAmount = 2 * difficulty + (Mathf.RoundToInt(progress) / 20) * difficulty;
+        spawntime = 8f - Mathf.RoundToInt(progress) / 13;
+
+        if(spawntime <= 0)
         {
-            spawntimer = spawntime;
-            WordManager.instance.WordGenerate(spawnLeangth, spawnAmount);
-            spawnLeangth = 4 + lengthCount / (15 / difficulty);
-            spawntime = 8 - lengthCount / (25 / difficulty);
-            spawnAmount = 2 + lengthCount / (30 / difficulty);
-            lengthCount += spawnAmount;
+            spawntime = 1 / difficulty;
         }
 
-        if (spawntime <= 1)
-            spawntime = 1f;   
+        // Spawn timer
+        spawntimer -= Time.deltaTime;
 
-        if(spawnAmount >= 22)
-            spawnAmount = 22;
+        if (spawntimer <= 0f)
+        {
+            spawntimer = spawntime;
+            //SoundManager.instance.PlayDestroy();
+            WordManager.instance.WordGenerate(spawnLeangth, spawnAmount);
+        }
 
         AudioListener.volume = VolumeManager.Instance.volume * 2;
     }
@@ -87,6 +91,8 @@ public class GameManager : MonoBehaviour
         {
             SoundManager.instance.PlayDeath();
             Time.timeScale = 0.4f;
+            ScoreManager.Instance.setScore();
+            ScoreManager.Instance.setTime();
             FadeController.instance.FadeToScene("Death");
         }
     }

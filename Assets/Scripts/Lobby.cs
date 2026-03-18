@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Lobby : MonoBehaviour
 {
+
     public void MoveToNextScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

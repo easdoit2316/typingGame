@@ -5,8 +5,23 @@ public class GameTimer : MonoBehaviour
 {
     public TMP_Text timerText;
 
-    private float timeElapsed;
+    public float timeElapsed;
     private bool isRunning = true;
+
+    public static GameTimer instance;
+    private void Awake()
+    {
+
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+    }
 
     void Update()
     {
